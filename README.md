@@ -1,5 +1,5 @@
 # OmniAvatar: Geometry-Guided Controllable 3D Head Synthesis
-###[Project]https://hongyixu37.github.io/omniavatar/| [Paper]https://arxiv.org/abs/2303.15539< br>
+### [Project](https://hongyixu37.github.io/omniavatar/)| [Paper](https://arxiv.org/abs/2303.15539) <br>
 
 ![](imgs/intro.gif)
 
