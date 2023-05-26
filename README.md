@@ -6,8 +6,7 @@
 ___
 
 > **OmniAvatar: Geometry-Guided Controllable 3D Head Synthesis**<br>
-> Hongyi Xu, Guoxian Song, Zihang Jiang, Jianfeng Zhang, Yichun Shi<br>
-> , Jing Liu, Wanchun Ma, Jiashi Feng, Linjie Luo<br>
+> Hongyi Xu, Guoxian Song, Zihang Jiang, Jianfeng Zhang, Yichun Shi, Jing Liu, Wanchun Ma, Jiashi Feng, Linjie Luo<br>
 > https://arxiv.org/abs/2303.15539 <br>
 >
 >**Abstract:** We present DeepSIM, a generative model for conditional image manipulation based on a single image.
@@ -24,10 +23,10 @@ cd omniavatar
 conda env create -f environment.yml
 conda activate omniavatar
 
-3. Download our pretrained model and FLAME fittings to FFHQ dataset. Save them in the network folder
+3. Download our pretrained model and FLAME fittings to FFHQ dataset. Save them in the ./network folder.
 ### Inference
 ```
-python3 gen_grouped_samples.py --network network/omniavatar.pkl --outdir results --label-pool network/ffhq_labels.npy --trunc 0.7 --cfg ffhq_3dmm --num-groups 10 --num-samples 4
+python3 gen_grouped_samples.py --network network/omniavatar.pkl --outdir results --label-pool network/ffhq_labels.npy --trunc 0.7 --cfg ffhq_3dmm --num-groups 5 --num-samples 4
 ```
 ![](imgs/samples.png)
 
