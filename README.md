@@ -1,13 +1,17 @@
-# Academic Project Page Template
-This is an academic paper project page template.
+# OmniAvatar: Geometry-Guided Controllable 3D Head Synthesis
+###[Project](https://hongyixu37.github.io/omniavatar/)| [Paper]https://arxiv.org/abs/2303.15539< br>
 
+![](imgs/header.gif)
 
-Example project pages built using this template are:
-- https://www.vision.huji.ac.il/deepsim/
-- https://www.vision.huji.ac.il/3d_ads/
-- https://www.vision.huji.ac.il/ssrl_ad/
-- https://www.vision.huji.ac.il/conffusion/
+___
 
+> **OmniAvatar: Geometry-Guided Controllable 3D Head Synthesis**<br>
+> Hongyi Xu, Guoxian Song, Zihang Jiang, Jianfeng Zhang, Yichun Shi<br>
+> , Jing Liu, Wanchun Ma, Jiashi Feng, Linjie Luo<br>
+> https://arxiv.org/abs/2303.15539 <br>
+>
+>**Abstract:** We present DeepSIM, a generative model for conditional image manipulation based on a single image.
+We present OmniAvatar, a novel geometry-guided 3D head synthesis model trained from in-the-wild unstructured images that is capable of synthesizing diverse identity- preserved 3D heads with compelling dynamic details un- der full disentangled control over camera poses, facial ex- pressions, head shapes, articulated neck and jaw poses. To achieve such high level of disentangled control, we first ex- plicitly define a novel semantic signed distance function (SDF) around a head geometry (FLAME) conditioned on the control parameters. This semantic SDF allows us to build a differentiable volumetric correspondence map from the observation space to a disentangled canonical space from all the control parameters. We then leverage the 3D- aware GAN framework (EG3D) to synthesize detailed shape and appearance of 3D full heads in the canonical space, fol- lowed by a volume rendering step guided by the volumetric correspondence map to output into the observation space. To ensure the control accuracy on the synthesized head shapes and expressions, we introduce a geometry prior loss to conform to head SDF and a control loss to conform to the expression code. Further, we enhance the temporal realism with dynamic details conditioned upon varying expressions and joint poses. Our model can synthesize more preferable identity-preserved 3D heads with compelling dynamic de- tails compared to the state-of-the-art methods both qualita- tively and quantitatively. We also provide an ablation study to justify many of our system design choices.
 
 ## Start using the template
 To start using the template click on `Use this Template`.
