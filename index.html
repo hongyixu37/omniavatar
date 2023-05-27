@@ -65,6 +65,7 @@
                     <a href="http://jeff95.me/" target="_blank">Jianfeng Zhang</a>,</span>
                   <span class="author-block">
                     <a href="https://seasonsh.github.io/" target="_blank">Yichun Shi</a>,</span>
+                  <br>
                   <span class="author-block">
                     <a href="https://www.jingliu.net/" target="_blank">Jing Liu</a>,</span>
                   <span class="author-block">
@@ -83,7 +84,7 @@
                   <div class="column has-text-centered">
                     <div class="publication-links">
                          <!-- Arxiv PDF link -->
-                      <span class="link-block">
+                    <span class="link-block">
                         <a href="https://arxiv.org/abs/2303.15539" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
@@ -94,7 +95,7 @@
                     </span>
 
                     <!-- Supplementary PDF link -->
-                    <span class="link-block">
+                  <span class="link-block">
                       <a href="static/pdfs/supplementary.pdf" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
@@ -104,9 +105,21 @@
                     </a>
                   </span>
 
+                  <!-- Supplementary Video link -->
+                  <span class="link-block">
+                    <a href="https://www.youtube.com/watch?v=Z1aXE9q9eUI" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <svg class="svg-inline--fa fa-youtube fa-w-18" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg>
+                      <!-- <i class="fas fa-youtube"></i> -->
+                    </span>
+                    <span>Video</span>
+                    </a>
+                  </span>
+
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/hongyixu37/omniavatar" target="_blank"
+                    <a href="https://github.com/hongyixu37/omniavatar/tree/master/code" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -159,7 +172,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            We present OmniAvatar, a novel geometry-guided 3D head synthesis model trained from in-the-wild unstructured images that is capable of synthesizing diverse identity-preserved 3D heads with compelling dynamic details under full disentangled control over camera poses, facial expressions, head shapes, articulated neck and jaw poses. To achieve such high level of disentangled control, we first explicitly define a novel semantic signed distance function (SDF) around a head geometry (FLAME) conditioned on the control parameters. This semantic SDF allows us to build a differentiable volumetric correspondence map from the observation space to a disentangled canonical space from all the control parameters. We then leverage the 3D-aware GAN framework (EG3D) to synthesize detailed shape and appearance of 3D full heads in the canonical space, followed by a volume rendering step guided by the volumetric correspondence map to output into the observation space. To ensure the control accuracy on the synthesized head shapes and expressions, we introduce a geometry prior loss to conform to head SDF and a control loss to conform to the expression code. Further, we enhance the temporal realism with dynamic details conditioned upon varying expressions and joint poses. Our model can synthesize more preferable identity-preserved 3D heads with compelling dynamic details compared to the state-of-the-art methods both qualitatively and quantitatively. We also provide an ablation study to justify many of our system design choices.
           </p>
         </div>
       </div>
@@ -168,67 +181,48 @@
 </section>
 <!-- End paper abstract -->
 
-
-<!-- Image carousel -->
-<section class="hero is-small">
+<!-- Paper Pipeline -->
+<section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
+      <h2 class="title">Pipeline</h2>
+      <img src="static/images/pipeline.png" alt="MY ALT TEXT"/>
+      <h4 class="content has-text-justified">
+        <b>Stage I</b>: Trained from parameterized FLAME mesh collections, a MLP-network W maps a shape α, expression θ and articulated jaw and neck pose θ into 3D point-to-point volumetric correspondences from observation
+        to canonical space, together with a signed distance function of the corresponding FLAME head. <b>Stage II</b>: Given a Gaussian latent code z,
+        our model generates a tri-plane represented 3D feature space of a canonical head, disentangled with shape and expression controls. The
+        volume rendering is then guided by the volumetric correspondence field to map the decoded neural radiance field from the canonical to
+        observation space. We condition the NeRF decoding with expression and joint pose for modeling dynamic details. A super-resolution
+        module synthesizes the final high-resolution RGB image from the volume-rendered feature map. For fine-grained shape and expression
+        control, we apply the FLAME SDF as geometric prior to the synthesized NeRF density, and self-supervise the image synthesis to commit
+        to the target expression β and joint pose θ by comparing the input code against the re-estimated values \hat{β}, \hat{θ} from synthesized images.
+      </h4>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
     </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
+  </section>
+<!--End paper poster -->
+
+
 
 
 
 
 <!-- Youtube video -->
-<section class="hero is-small is-light">
+<!-- <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
-      <!-- Paper video. -->
       <h2 class="title is-3">Video Presentation</h2>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           
           <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://youtube.com/watch?v=Z1aXE9q9eUI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!-- End youtube video -->
 
 
@@ -236,26 +230,30 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
+      <h2 class="title is-3">Results</h2>
       <div id="results-carousel" class="carousel results-carousel">
+        <!-- <div class="item">
+          <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
+          <h2 class="subtitle has-text-centered">
+            First image description.
+          </h2>
+        </div> -->
         <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
+          <video poster="animation" id="video1" autoplay controls muted loop height="100%">
+            <source src="static/videos/animation1.mp4"
+            type="video/mp4", alt="Talking Head Generation">
+          </h2>
           </video>
         </div>
         <div class="item item-video2">
           <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
+            <source src="static/videos/face_reenactment1.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
           <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
+            <source src="static/videos/face_reenactment2.mp4"
             type="video/mp4">
           </video>
         </div>
@@ -286,13 +284,20 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>@InProceedings{Xu_2023_CVPR_OmniAvatar,
+        author    = {Xu, Hongyi and Guoxian Song and Zihang Jiang and Jianfeng Zhang and Yichun Shi and Jing Liu and Wanchun Ma and Jiashi Feng and Linjie Luo},
+        title     = {OmniAvatar: Geometry-Guided Controllable 3D Head Synthesis},
+        booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+        month     = {June},
+        year      = {2023},
+        pages     = {12814-12824}
+    }</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
 
 
-  <footer class="footer">
+  <!-- <footer class="footer">
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-8">
@@ -308,7 +313,7 @@
       </div>
     </div>
   </div>
-</footer>
+</footer> -->
 
 <!-- Statcounter tracking code -->
   
