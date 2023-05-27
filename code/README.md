@@ -20,9 +20,10 @@ git clone https://github.com/hongyixu37/omniavatar.git
 cd omniavatar
 ```
 2. Create a new environment and install the libraries:
+```bash
 conda env create -f environment.yml
 conda activate omniavatar
-
+```
 3. Download our pretrained model and FLAME fittings to FFHQ dataset. Save them in the ./pretrained folder.
 ### Inference
 ```
