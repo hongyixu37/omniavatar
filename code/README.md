@@ -23,10 +23,10 @@ cd omniavatar
 conda env create -f environment.yml
 conda activate omniavatar
 
-3. Download our pretrained model and FLAME fittings to FFHQ dataset. Save them in the ./network folder.
+3. Download our pretrained model and FLAME fittings to FFHQ dataset. Save them in the ./pretrained folder.
 ### Inference
 ```
-python3 gen_grouped_samples.py --network network/omniavatar.pkl --outdir results --label-pool network/ffhq_labels.npy --trunc 0.7 --cfg ffhq_3dmm --num-groups 5 --num-samples 4
+python3 gen_grouped_samples.py --network ./pretrained/omniavatar.pkl --outdir results --label-pool ./pretrained/ffhq_labels.npy --trunc 0.7 --cfg ffhq_3dmm --num-groups 5 --num-samples 4
 ```
 ![](imgs/samples.png)
 
@@ -43,3 +43,5 @@ If you find this useful for your research, please use the following.
     pages     = {12814-12824}
 }
 ```
+## Acknowledgement
+Part of code is borrowed from [EG3D](https://github.com/NVlabs/eg3d).
