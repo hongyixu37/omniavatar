@@ -24,7 +24,7 @@ cd omniavatar
 conda env create -f environment.yml
 conda activate omniavatar
 ```
-3. Download our pretrained model and FLAME fittings to FFHQ dataset. Save them in the ./pretrained folder.
+3. Download our [pretrained model and FLAME fittings to FFHQ dataset](https://drive.google.com/drive/folders/1Q9NYBX_pD8dO-YrCjWHYK53GIrYBIBMK). Save them in the ./pretrained folder.
 ### Inference
 ```
 python3 gen_grouped_samples.py --network ./pretrained/omniavatar.pkl --outdir results --label-pool ./pretrained/ffhq_labels.npy --trunc 0.7 --cfg ffhq_3dmm --num-groups 5 --num-samples 4
